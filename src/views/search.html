@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% set pageId = "page-search"%}
+{% block title %}
+    <title>Ecoleta - Pesquisa Coleta de Resíduos</title>
+{% endblock title %}
+{% block styles %}
+    <link href="/styles/main.css" rel="stylesheet">
+    <link href="/styles/search.css" rel="stylesheet">
+{% endblock styles %}
+{% block content %}     
+    {% include "header.html" %}
+    <main>
+    {% if total_rows > 0 %}
+        <h4><strong>{{total_rows}} pontos</strong> encontrados</h4>
+    <div class="cards">
+        {% for place in places %}
+        <div class="card">
+            <img src="{{place.image}}" alt="{{place.name}}"/>
+            <h1>{{place.name}}</h1>
+            <h3>{{place.itens}}</h3>
+            <p>{{place.address}},{{place.number}}<br></p>
+            <p>{{place.city}}/{{place.state}}<br></p>
+        </div>        
+        {% endfor %}        
+    </div>
+    {% else %}
+        <h4><strong>Nenhum</strong> registro encontrados</h4>
+    {% endif %}   
+    </main>
+{% endblock content %}
